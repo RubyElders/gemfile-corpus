@@ -1,0 +1,121 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# Updating the Ruby version requires updating the version in the following files:
+#
+# * Gemfile (this file)
+# * Dockerfile (2 places)
+# * mise.toml
+#
+# Then update the setup-ruby action hash/tag comment in the following action/workflow files:
+#
+# * .github/actions/setup-clover/action.yml
+# * .github/workflows/csi-build.yml
+# * .github/workflows/kubernetes-csi-ci.yml
+# * .github/workflows/rhizome.yml
+#
+# Then update BUNDLED WITH version in Gemfile.lock to match bundler version that
+# ships with the new Ruby version.
+#
+# Then run `mise install`, `mise lock`, and `bundle install`.
+ruby "4.0.7"
+
+gem "acme-client"
+gem "argon2"
+gem "argon2-kdf"
+gem "autoforme", ">= 1.15"
+gem "aws-sdk-ec2", "~> 1.512"
+gem "aws-sdk-iam"
+gem "aws-sdk-s3"
+gem "cgi" # google-cloud-storage requires it; cgi is removed from Ruby 4.0 stdlib
+gem "google-apis-cloudresourcemanager_v3"
+gem "google-apis-iam_v1"
+gem "google-cloud-compute-v1", "~> 3.4"
+gem "google-cloud-storage", "~> 1.58"
+gem "bcrypt_pbkdf"
+gem "committee", ">= 5.6.4"
+gem "countries"
+gem "ed25519"
+gem "erubi", ">= 1.5"
+gem "excon"
+gem "forme"
+gem "jwt"
+gem "mail"
+gem "net-ssh"
+gem "netaddr"
+gem "nokogiri"
+gem "octokit"
+gem "omniauth-github"
+gem "omniauth-google-oauth2"
+gem "pagerduty", ">= 4.0"
+gem "prawn"
+gem "prawn-table"
+gem "prometheus-client", "~> 4.2"
+gem "pry"
+gem "puma", ">= 6.2.2"
+gem "rack-unreloader", ">= 1.8"
+gem "rake"
+gem "refrigerator", ">= 1"
+gem "roda", ">= 3.108"
+gem "rodauth", ">= 2.48"
+gem "rodauth-omniauth", ">= 0.6.2"
+gem "rodish", ">= 2.0.1"
+gem "rotp"
+gem "rqrcode"
+gem "sequel", ">= 5.103.0"
+gem "sequel_pg", ">= 1.8", require: "sequel"
+gem "shellwords"
+gem "stripe", ">= 13"
+gem "tilt", ">= 2.6.1"
+gem "warning"
+gem "webauthn"
+
+group :aws_kms do
+  gem "aws-sdk-kms"
+end
+
+group :gcp_kms do
+  gem "google-apis-cloudkms_v1"
+end
+
+group :aws_rds_iam do
+  gem "pg-aws_rds_iam", github: "haines/pg-aws_rds_iam", ref: "fb91b9232837e350aa9c8440b7340346adae845e"
+end
+
+group :gcp_cloudsql_iam do
+  gem "google-apis-iamcredentials_v1"
+end
+
+group :development do
+  gem "awesome_print"
+  gem "by", ">= 1.1.0"
+  gem "cuprite"
+  gem "foreman"
+  gem "pry-byebug"
+end
+
+group :rubocop do
+  gem "rubocop-capybara"
+  gem "rubocop-erb"
+  gem "rubocop-performance"
+  gem "rubocop-rake"
+  gem "rubocop-rspec"
+  gem "rubocop-sequel"
+  gem "standard", ">= 1.24.3"
+end
+
+group :test do
+  gem "capybara"
+  gem "capybara-validate_html5", ">= 2.1"
+  gem "pdf-reader"
+  gem "perfect_toml", "0.9.0"
+  gem "rspec"
+  gem "simplecov"
+  gem "turbo_tests"
+  gem "webmock"
+end
+
+group :test, :development do
+  gem "sequel-annotate"
+end

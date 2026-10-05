@@ -1,0 +1,146 @@
+source 'https://rubygems.org'
+ruby file: '.ruby-version'
+
+gem 'rails', '~> 8.1.3' # LOCKED: It is Rails.
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+gem 'rails_semantic_logger' # condense log lines: https://github.com/codebar/planner/issues/2339
+gem 'strong_migrations'
+
+gem 'acts-as-taggable-on'
+gem 'benchmark' # LOCKED: Added because of activesupport 7.0
+gem 'bigdecimal' # LOCKED: Added because of activesupport 7.0
+gem 'carrierwave'
+gem 'cocoon'
+# LOCKED: csv was loaded from the standard library, but is not part of the default
+# gems starting from Ruby 3.4.0. Due to config/application.rb
+gem 'csv'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'drb' # LOCKED: Added because of pry-remote
+gem 'email_validator'
+gem 'font_awesome5_rails'
+gem 'bootstrap', '~> 5'
+gem 'friendly_id'
+gem 'haml'
+gem 'high_voltage'
+gem 'discard', '~> 2.0'
+gem 'jquery-rails'
+gem 'jwt'
+
+# Use Active Storage variant
+# image_processing 2.0 made its backends soft dependencies; mini_magick is
+# required by CarrierWave::MiniMagick (avatar/image uploads). Active Storage's
+# variant processor is set to :mini_magick in config/application.rb so the
+# vips backend is never loaded.
+gem 'image_processing'
+gem 'mini_magick'
+# json 3.0 breaks ActiveSupport::JSON.decode: json 3.0 made JSON.parse
+# keyword-only, so Rails' JSON.parse(json, options) positional-hash call
+# raises ArgumentError and every session-cookie read fails. Pinned until
+# Rails supports json 3.x (https://github.com/codebar/planner/pull/2864).
+gem 'json', '~> 2.3'
+gem 'mutex_m' # LOCKED: Added because of activesupport 7.0
+gem 'nokogiri'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+gem 'pg'
+gem 'premailer-rails'
+
+gem 'pundit'
+gem 'reline' # LOCKED: Added because of readline is not part of Ruby 3.5.0
+# LOCKED: readline was loaded from the standard library, but is not part of the
+# default gems starting from Ruby 4.0.0.
+gem 'readline'
+gem 'rolify'
+# Use Sass to process CSS
+gem 'sassc-rails'
+gem 'simple_form'
+
+gem 'terser'
+
+gem 'pagy', '~> 43.6'
+
+gem 'icalendar'
+gem 'tzinfo-data'
+
+# Chosen JavaScript and CSS loaded from vendor/assets/ instead of gem
+# The chosen-rails gem has broken CoffeeScript compilation on Rails 8.1
+gem 'commonmarker'
+
+gem 'faraday'
+gem 'msgpack'
+
+gem 'rails-html-sanitizer', '~> 1.7.1'
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '~> 8.0'
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem 'turbo-rails'
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'stimulus-rails'
+gem 'public_activity'
+gem 'view_component'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'haml_lint', require: false
+  gem 'letter_opener'
+  gem 'web-console', '>= 4.1.0'
+  # Display performance information such as SQL time and flame graphs for each request in your browser.
+  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem 'rack-mini-profiler', '~> 5.0'
+  gem 'listen', '~> 3.10'
+  gem 'overcommit', require: false
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # gem 'spring'
+end
+
+group :development, :test do
+  gem 'amazing_print' # pretty-prints log payloads for SemanticLogger's colour formatter
+  gem 'bundler-audit', require: false
+  gem 'fabrication'
+  gem 'faker'
+  gem 'irb' # LOCKED: Added because of byebug
+  gem 'launchy'
+  gem 'parallel_tests'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-remote'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
+  gem 'bullet'
+end
+
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
+  gem 'capybara-playwright-driver'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 8.0'
+  gem 'simplecov',      require: false
+  gem 'simplecov-lcov', require: false
+  gem 'webmock'
+end
+
+group :production do
+  gem 'foreman'
+end
+
+gem 'rollbar'
+gem 'scout_apm'
+gem 'rqrcode'
+gem 'prawn'
+gem 'prawn-svg', '~> 0.35'
+
+gem 'carrierwave-aws', '~> 1.6'
+
+gem 'solid_cache', '~> 1.0'

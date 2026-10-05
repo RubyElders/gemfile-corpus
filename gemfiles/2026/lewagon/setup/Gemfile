@@ -1,0 +1,12 @@
+source "https://rubygems.org"
+
+gem "liquid"
+gem "base64"
+gem "cgi"
+gem "rspec"
+gem "rubocop"
+gem "pry"
+gem "pry-byebug"
+gem "colored"
+gem "http"
+gem "ostruct"

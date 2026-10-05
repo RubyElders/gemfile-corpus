@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+gem 'bootsnap', require: false
+gem 'bundler'
+gem 'graphql'
+gem 'puma'
+gem 'roda'
+gem 'sequel'
+gem 'sqlite3'
+gem 'zeitwerk'
+
+group :development, :test do
+  gem 'thor', require: false
+end
+
+group :development do
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-sequel', require: false
+end
+
+group :test do
+  gem 'fixture_dependencies'
+  gem 'mocha', require: false
+  gem 'test-unit', require: 'test/unit'
+end

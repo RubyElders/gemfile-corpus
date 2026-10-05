@@ -1,0 +1,88 @@
+source 'https://rubygems.org'
+
+ruby '4.0.6'
+
+gem 'active_storage_validations'
+gem 'akismet'
+gem 'aws-sdk-s3', require: false
+gem 'bootsnap'
+gem 'csv'
+gem 'daemons'
+gem 'detect_language'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-two-factor'
+gem 'diffy'
+gem 'elasticsearch', '~> 8.0' # Need to stick to the same major version as the es server per https://github.com/ankane/searchkick/issues/1713#issuecomment-2829261681
+gem 'email_address'
+gem 'ffi-icu'
+gem 'google-analytics-data'
+gem 'hiredis'
+gem 'i18n'
+gem 'i18n_data'
+gem 'image_processing'
+gem 'it'
+gem 'levenshtein'
+gem 'memo_wise'
+gem 'mini_racer'
+gem 'mysql2'
+gem 'pagy'
+gem 'public_suffix'
+gem 'puma'
+gem 'puma_worker_killer'
+gem 'rack-attack'
+gem 'rails', '~> 8.1.0'
+gem 'rails-i18n'
+gem 'recaptcha', require: 'recaptcha/rails'
+gem 'redcarpet'
+gem 'redis'
+gem 'regexp_parser'
+gem 'rqrcode'
+gem 'ruby-vips'
+gem 'sanitize'
+gem 'searchkick'
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'sidekiq-unique-jobs'
+gem 'sidekiq-worker-killer'
+gem 'ssrf_filter', '~> 1.5.0'
+gem 'strip_attributes'
+gem 'user_agent_parser'
+gem 'vite_rails'
+
+# These need to be after the main block otherwise "Error during failsafe response: uncaught throw :warden"
+gem 'omniauth', '>= 1.6.0'
+gem 'omniauth-github'
+gem 'omniauth-gitlab'
+gem 'omniauth-google-oauth2', '>= 0.4.1'
+
+group :development, :test do
+  gem 'byebug'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'capistrano', '~> 3.8'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'erb_lint', require: false
+  gem 'listen'
+  gem 'rubocop'
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-minitest', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+end
+
+group :test do
+  gem 'bundler-audit'
+  gem 'capybara'
+  gem 'minitest-around'
+  gem 'mocha'
+  gem 'selenium-webdriver'
+end

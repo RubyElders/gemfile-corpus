@@ -1,0 +1,109 @@
+ruby '4.0.1'
+source 'https://rubygems.org'
+
+gem 'rails', '~> 8.1.0'
+
+gem 'csv'
+gem 'ffi'
+gem 'puma'
+gem 'rack-cors'
+gem 'thruster', require: false
+
+# DB
+gem 'pg', '~> 1.5'
+gem 'pluck_to_hash'
+
+gem 'benchmark' # indirect dependency, being removed from Ruby 4.0 stdlib so here to quash warnings
+gem 'bootsnap', require: false
+
+# Auth
+gem 'devise'
+gem 'doorkeeper'
+gem 'googleauth'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
+# Authorization
+gem 'pundit'
+
+# Payments
+gem 'pay', '~> 11.0'
+gem 'stripe', '~> 18.0'
+
+# Pagination
+gem 'kaminari'
+
+# Template engines
+gem 'jbuilder', '~> 2.6'
+
+# Files attachments
+gem 'aws-sdk-s3'
+gem 'image_processing', '~> 1.12'
+
+# XML
+gem 'nokogiri', '~> 1.19'
+
+# Background jobs & cache
+gem 'redis'
+gem 'sidekiq'
+gem 'sidekiq-cron'
+
+# Export to Excel
+gem 'caxlsx'
+gem 'caxlsx_rails'
+
+# Exception notifications and profiling
+group :production do
+  gem 'honeybadger'
+  gem 'skylight'
+end
+
+gem 'amplitude-api'
+
+# Internalization
+gem 'http_accept_language'
+gem 'i18n-js'
+gem 'listen'
+
+gem 'browser'
+
+# Assets
+gem 'sassc-rails'
+gem 'shakapacker', '6.5.0'
+gem 'terser'
+gem 'turbo-rails'
+
+gem 'matrix'
+gem 'vincenty_distance'
+
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+gem 'net-smtp', require: false
+
+group :development do
+  gem 'annotate'
+  gem 'bullet'
+  gem 'kamal', '~> 2.5'
+  gem 'letter_opener'
+  gem 'rubocop', require: false
+  gem 'rubocop-minitest', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+end
+
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'codeclimate-test-reporter', require: false
+  gem 'minitest', '< 6.0'
+  gem 'minitest-mock'
+  gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'vcr'
+  gem 'webmock'
+end
