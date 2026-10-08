@@ -1,0 +1,75 @@
+GIT
+  remote: https://github.com/hanami/api.git
+  revision: 68a1a5be94aff1c2d1c9a3499cfbb40de3ea1888
+  branch: feature/container
+  specs:
+    hanami-api (0.2.0)
+      hanami-router (~> 2.0.alpha)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.2)
+    byebug (11.1.3)
+    concurrent-ruby (1.1.8)
+    dry-auto_inject (0.7.0)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.12.1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.5, >= 0.5.0)
+    dry-container (0.7.2)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1, >= 0.1.3)
+    dry-core (0.5.0)
+      concurrent-ruby (~> 1.0)
+    hanami-router (2.0.0.alpha5)
+      mustermann (~> 1.0)
+      mustermann-contrib (~> 1.0)
+      rack (~> 2.0)
+    hansi (0.2.0)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    mustermann-contrib (1.1.1)
+      hansi (~> 0.2.0)
+      mustermann (= 1.1.1)
+    nio4r (2.5.7)
+    parallel (1.20.1)
+    parser (3.0.1.1)
+      ast (~> 2.4.1)
+    puma (5.3.1)
+      nio4r (~> 2.0)
+    rack (2.2.3)
+    rainbow (3.0.0)
+    redis (4.2.5)
+    regexp_parser (2.1.1)
+    rexml (3.2.5)
+    rubocop (1.14.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.5.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.5.0)
+      parser (>= 3.0.1.1)
+    ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.4)
+    unicode-display_width (2.0.0)
+
+PLATFORMS
+  x86_64-darwin-19
+  x86_64-linux
+
+DEPENDENCIES
+  byebug
+  dry-auto_inject (~> 0.7)
+  dry-container (~> 0.7)
+  hanami-api!
+  puma
+  redis
+  rubocop
+
+BUNDLED WITH
+   2.2.16

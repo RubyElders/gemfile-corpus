@@ -1,0 +1,312 @@
+GIT
+  remote: git@github.com:rails/rails.git
+  revision: 4f3af4a67f227ed7998fed570b9aa671e1b74117
+  specs:
+    actioncable (7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      nio4r (~> 2.0)
+      websocket-driver (>= 0.6.1)
+      zeitwerk (~> 2.6)
+    actionmailbox (7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      activejob (= 7.1.0.alpha)
+      activerecord (= 7.1.0.alpha)
+      activestorage (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      mail (>= 2.7.1)
+      net-imap
+      net-pop
+      net-smtp
+    actionmailer (7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      actionview (= 7.1.0.alpha)
+      activejob (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      mail (~> 2.5, >= 2.5.4)
+      net-imap
+      net-pop
+      net-smtp
+      rails-dom-testing (~> 2.0)
+    actionpack (7.1.0.alpha)
+      actionview (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      rack (~> 2.0, >= 2.2.4)
+      rack-test (>= 0.6.3)
+      rails-dom-testing (~> 2.0)
+      rails-html-sanitizer (~> 1.0, >= 1.2.0)
+    actiontext (7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      activerecord (= 7.1.0.alpha)
+      activestorage (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      globalid (>= 0.6.0)
+      nokogiri (>= 1.8.5)
+    actionview (7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      builder (~> 3.1)
+      erubi (~> 1.11)
+      rails-dom-testing (~> 2.0)
+      rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    activejob (7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      globalid (>= 0.3.6)
+    activemodel (7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+    activerecord (7.1.0.alpha)
+      activemodel (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+    activestorage (7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      activejob (= 7.1.0.alpha)
+      activerecord (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      marcel (~> 1.0)
+      mini_mime (>= 1.1.0)
+    activesupport (7.1.0.alpha)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      connection_pool (>= 2.2.5)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+    rails (7.1.0.alpha)
+      actioncable (= 7.1.0.alpha)
+      actionmailbox (= 7.1.0.alpha)
+      actionmailer (= 7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      actiontext (= 7.1.0.alpha)
+      actionview (= 7.1.0.alpha)
+      activejob (= 7.1.0.alpha)
+      activemodel (= 7.1.0.alpha)
+      activerecord (= 7.1.0.alpha)
+      activestorage (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      bundler (>= 1.15.0)
+      railties (= 7.1.0.alpha)
+    railties (7.1.0.alpha)
+      actionpack (= 7.1.0.alpha)
+      activesupport (= 7.1.0.alpha)
+      rake (>= 12.2)
+      thor (~> 1.0)
+      zeitwerk (~> 2.6)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    active_record_doctor (1.10.0)
+      activerecord (>= 4.2.0)
+    bcrypt (3.1.18)
+    benchmark-ips (2.10.0)
+    benchmark-memory (0.2.0)
+      memory_profiler (~> 1)
+    blazer (2.6.4)
+      activerecord (>= 5)
+      chartkick (>= 3.2)
+      railties (>= 5)
+      safely_block (>= 0.1.1)
+    builder (3.2.4)
+    chartkick (4.2.0)
+    choice (0.2.0)
+    chronic (0.10.2)
+    code_analyzer (0.5.5)
+      sexp_processor
+    coderay (1.1.3)
+    concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
+    crass (1.0.6)
+    database_consistency (1.7.1)
+      activerecord (>= 3.2)
+    date (3.3.3)
+    errbase (0.2.2)
+    erubi (1.11.0)
+    erubis (2.7.0)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
+    faraday (2.7.2)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
+    ffi (1.15.5)
+    fx (0.7.0)
+      activerecord (>= 4.0.0)
+      railties (>= 4.0.0)
+    geocoder (1.8.0)
+    globalid (1.0.0)
+      activesupport (>= 5.0)
+    google-protobuf (3.21.10-x86_64-darwin)
+    i18n (1.12.0)
+      concurrent-ruby (~> 1.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
+    json (2.6.3)
+    jwt (2.4.1)
+    listen (3.7.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
+    loofah (2.19.1)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.5.9)
+    mail (2.8.0)
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
+    marcel (1.0.2)
+    memory_profiler (1.0.0)
+    method_source (1.0.0)
+    mini_mime (1.1.2)
+    minitest (5.16.3)
+    net-imap (0.3.2)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
+    nio4r (2.5.8)
+    nokogiri (1.13.10-x86_64-darwin)
+      racc (~> 1.4)
+    pg (1.4.4)
+    pg_query (2.2.0)
+      google-protobuf (>= 3.19.2)
+    pghero (2.8.3)
+      activerecord (>= 5)
+    prosopite (1.2.2)
+    pry (0.14.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    puma (5.6.4)
+      nio4r (~> 2.0)
+    racc (1.6.1)
+    rack (2.2.4)
+    rack-proxy (0.7.2)
+      rack
+    rack-test (2.0.2)
+      rack (>= 1.3)
+    rails-dom-testing (2.0.3)
+      activesupport (>= 4.2.0)
+      nokogiri (>= 1.6)
+    rails-erd (1.7.1)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
+    rails-html-sanitizer (1.4.4)
+      loofah (~> 2.19, >= 2.19.1)
+    rails-pg-extras (4.12.1)
+      rails
+      ruby-pg-extras (= 4.12.1)
+    rails_best_practices (1.23.2)
+      activesupport
+      code_analyzer (~> 0.5.5)
+      erubis
+      i18n
+      json
+      require_all (~> 3.0)
+      ruby-progressbar
+    rake (13.0.6)
+    rb-fsevent (0.11.1)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
+    require_all (3.0.0)
+    rexml (3.2.5)
+    ruby-graphviz (1.2.5)
+      rexml
+    ruby-pg-extras (4.12.1)
+      pg
+      terminal-table
+    ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
+    safely_block (0.3.0)
+      errbase (>= 0.1.1)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
+    scenic (1.6.0)
+      activerecord (>= 4.0.0)
+      railties (>= 4.0.0)
+    semantic_range (3.0.0)
+    sexp_processor (4.16.1)
+    sprockets (4.0.3)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
+    strong_migrations (1.2.0)
+      activerecord (>= 5.2)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
+    thor (1.2.1)
+    tilt (2.0.10)
+    timeout (0.3.1)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
+    unicode-display_width (2.3.0)
+    webpacker (5.4.3)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
+    websocket-driver (0.7.5)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
+    zeitwerk (2.6.6)
+
+PLATFORMS
+  x86_64-darwin-20
+  x86_64-darwin-21
+
+DEPENDENCIES
+  active_record_doctor
+  bcrypt
+  benchmark-ips
+  benchmark-memory
+  blazer
+  database_consistency
+  faker
+  faraday
+  fast_jsonapi
+  fx
+  geocoder
+  jbuilder
+  json
+  jwt
+  listen
+  pg
+  pg_query
+  pghero
+  prosopite
+  pry
+  puma
+  rails!
+  rails-erd
+  rails-pg-extras
+  rails_best_practices
+  sass-rails
+  scenic
+  strong_migrations
+  turbolinks
+  webpacker
+  whenever
+
+BUNDLED WITH
+   2.3.6

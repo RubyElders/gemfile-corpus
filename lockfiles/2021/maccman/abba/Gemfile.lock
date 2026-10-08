@@ -1,0 +1,104 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (4.2.5.1)
+      activesupport (= 4.2.5.1)
+      builder (~> 3.1)
+    activesupport (4.2.5.1)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    backports (3.6.8)
+    bson (1.12.5)
+    bson_ext (1.12.5)
+      bson (~> 1.12.5)
+    builder (3.2.2)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.10.0)
+    daemons (1.2.3)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
+    erubis (2.7.0)
+    eventmachine (1.0.9.1)
+    execjs (2.6.0)
+    hike (1.2.3)
+    i18n (0.7.0)
+    json (1.8.3)
+    minitest (5.8.4)
+    mongo (1.12.5)
+      bson (= 1.12.5)
+    mongo_mapper (0.13.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0)
+      mongo (~> 1.8)
+      plucky (~> 0.6.5)
+    multi_json (1.11.2)
+    plucky (0.6.6)
+      mongo (~> 1.5)
+    rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    sinatra-contrib (1.4.6)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (>= 1.3, < 3)
+    sprockets (2.9.4)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sprockets-commonjs (0.0.6)
+      sprockets (~> 2.9.2)
+    stylus (1.0.1)
+      execjs
+      stylus-source
+    stylus-source (0.49.3)
+    thin (1.6.4)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (~> 1.0)
+    thread_safe (0.3.5)
+    tilt (1.4.1)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uglifier (2.7.2)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
+    useragent (0.16.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bson_ext
+  coffee-script
+  eco
+  erubis
+  mongo_mapper
+  sinatra
+  sinatra-contrib
+  sprockets
+  sprockets-commonjs
+  stylus
+  thin
+  uglifier
+  useragent
+
+BUNDLED WITH
+   1.10.6

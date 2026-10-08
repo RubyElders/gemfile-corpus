@@ -1,0 +1,70 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.2)
+    bootsnap (1.9.3)
+      msgpack (~> 1.0)
+    fixture_dependencies (1.10.0)
+    graphql (1.13.2)
+    mocha (1.13.0)
+    msgpack (1.4.2)
+    nio4r (2.5.8)
+    parallel (1.21.0)
+    parser (3.0.3.2)
+      ast (~> 2.4.1)
+    power_assert (2.0.1)
+    puma (5.5.2)
+      nio4r (~> 2.0)
+    rack (2.2.3)
+    rainbow (3.0.0)
+    regexp_parser (2.2.0)
+    rexml (3.2.5)
+    roda (3.51.0)
+      rack
+    rubocop (1.24.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.15.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.15.0)
+      parser (>= 3.0.1.1)
+    rubocop-performance (1.13.0)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-sequel (0.3.3)
+      rubocop (~> 1.0)
+    ruby-progressbar (1.11.0)
+    sequel (5.51.0)
+    sqlite3 (1.4.2)
+    test-unit (3.5.3)
+      power_assert
+    thor (1.1.0)
+    unicode-display_width (2.1.0)
+    zeitwerk (2.5.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bootsnap
+  bundler
+  fixture_dependencies
+  graphql
+  mocha
+  puma
+  roda
+  rubocop
+  rubocop-performance
+  rubocop-sequel
+  sequel
+  sqlite3
+  test-unit
+  thor
+  zeitwerk
+
+BUNDLED WITH
+   2.1.4

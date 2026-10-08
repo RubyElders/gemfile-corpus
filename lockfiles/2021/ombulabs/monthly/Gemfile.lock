@@ -1,0 +1,59 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.6)
+    armor (0.0.3)
+    coderay (1.1.0)
+    cuba (3.1.1)
+      rack
+    cuba-contrib (3.1.0)
+      cuba (~> 3.1)
+    dotenv (2.2.0)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
+    faraday_middleware (0.7.0)
+      faraday (~> 0.7.3)
+    hashie (1.1.0)
+    letsfreckle-client (0.2.1)
+      faraday (~> 0.7.4)
+      faraday_middleware (~> 0.7.0)
+      hashie (~> 1.1.0)
+      multi_xml (~> 0.2.0)
+    method_source (0.8.2)
+    mote (1.1.2)
+    multi_xml (0.2.2)
+    multipart-post (1.2.0)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
+    rack (1.5.2)
+    rack-protection (1.5.3)
+      rack
+    shield (2.1.0)
+      armor
+    shotgun (0.9)
+      rack (>= 1.0)
+    slop (3.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cuba (~> 3.1.1)
+  cuba-contrib (~> 3.1.0)
+  dotenv
+  letsfreckle-client
+  mote (~> 1.1.2)
+  pry
+  pry-nav
+  rack-protection (~> 1.5.3)
+  shield (~> 2.1.0)
+  shotgun
+
+BUNDLED WITH
+   1.14.4

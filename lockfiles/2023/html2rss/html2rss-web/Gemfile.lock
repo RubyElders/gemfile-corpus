@@ -1,0 +1,167 @@
+GIT
+  remote: https://github.com/html2rss/html2rss
+  revision: 8e9c589fbd73ddbd5e9d53eb318a8a79757d4e57
+  specs:
+    html2rss (0.9.0)
+      addressable (~> 2.7)
+      faraday (> 2.0.1, < 3.0)
+      faraday-follow_redirects
+      kramdown
+      mime-types (> 3.0)
+      nokogiri (>= 1.10, < 2.0)
+      regexp_parser
+      reverse_markdown (~> 2.0)
+      rss
+      sanitize (~> 6.0)
+      thor
+      tzinfo
+      zeitwerk
+
+GIT
+  remote: https://github.com/html2rss/html2rss-configs
+  revision: e5419561267217e202b142e41e6f43a0f729b27c
+  specs:
+    html2rss-configs (0.2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
+    ast (2.4.2)
+    base64 (0.2.0)
+    byebug (11.1.3)
+    concurrent-ruby (1.2.2)
+    crass (1.0.6)
+    diff-lcs (1.5.0)
+    docile (1.4.0)
+    erubi (1.12.0)
+    faraday (2.8.1)
+      base64
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
+    faraday-net_http (3.0.2)
+    json (2.7.1)
+    kramdown (2.4.0)
+      rexml
+    language_server-protocol (3.17.0.3)
+    mime-types (3.5.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2023.1205)
+    nio4r (2.7.0)
+    nokogiri (1.16.0-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.0-x86_64-linux)
+      racc (~> 1.4)
+    parallel (1.24.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
+    public_suffix (5.0.4)
+    puma (6.4.0)
+      nio4r (~> 2.0)
+    racc (1.7.3)
+    rack (3.0.8)
+    rack-cache (1.15.0)
+      rack (>= 0.4)
+    rack-timeout (0.6.3)
+    rack-unreloader (2.1.0)
+    rainbow (3.1.1)
+    rake (13.1.0)
+    regexp_parser (2.8.3)
+    reverse_markdown (2.1.1)
+      nokogiri
+    rexml (3.2.6)
+    roda (3.75.0)
+      rack
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-support (3.12.1)
+    rss (0.3.0)
+      rexml
+    rubocop (1.59.0)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.2.2.4)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    rubocop-capybara (2.19.0)
+      rubocop (~> 1.41)
+    rubocop-factory_bot (2.24.0)
+      rubocop (~> 1.33)
+    rubocop-performance (1.20.1)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+    rubocop-rake (0.6.0)
+      rubocop (~> 1.0)
+    rubocop-rspec (2.25.0)
+      rubocop (~> 1.40)
+      rubocop-capybara (~> 2.17)
+      rubocop-factory_bot (~> 2.22)
+    ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
+    sanitize (6.1.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
+    thor (1.3.0)
+    tilt (2.3.0)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
+    vcr (6.2.0)
+    yard (0.9.34)
+    zeitwerk (2.6.12)
+
+PLATFORMS
+  arm64-darwin-22
+  arm64-darwin-23
+  x86_64-linux
+
+DEPENDENCIES
+  byebug
+  erubi
+  html2rss!
+  html2rss-configs!
+  puma
+  rack-cache
+  rack-timeout
+  rack-unreloader
+  rake
+  roda
+  rspec
+  rubocop
+  rubocop-performance
+  rubocop-rake
+  rubocop-rspec
+  simplecov
+  tilt
+  vcr
+  yard
+
+BUNDLED WITH
+   2.5.3

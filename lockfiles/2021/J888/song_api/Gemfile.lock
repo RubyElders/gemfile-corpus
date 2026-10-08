@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    pg (1.2.3)
+    rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
+    roda (3.40.0)
+      rack
+    sequel (5.40.0)
+    sequel_pg (1.14.0)
+      pg (>= 0.18.0, != 1.2.0)
+      sequel (>= 4.38.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rack-cors (>= 1.1.1)
+  roda (>= 3.40)
+  sequel (>= 5.40.0)
+  sequel_pg (>= 1.14)
+
+BUNDLED WITH
+   1.17.3
