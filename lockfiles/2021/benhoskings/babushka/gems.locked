@@ -1,0 +1,42 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.3)
+    ir_b (1.5.0)
+    rake (12.0.0)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    rubysl-abbrev (2.0.4)
+    rubysl-e2mmap (2.0.0)
+    rubysl-irb (2.1.1)
+      rubysl-e2mmap (~> 2.0)
+      rubysl-mathn (~> 2.0)
+      rubysl-thread (~> 2.0)
+    rubysl-mathn (2.0.0)
+    rubysl-singleton (2.0.0)
+    rubysl-thread (2.0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ir_b
+  rake
+  rspec
+  rubysl-abbrev
+  rubysl-irb
+  rubysl-singleton
+
+BUNDLED WITH
+   1.14.5

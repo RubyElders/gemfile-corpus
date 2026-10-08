@@ -16,3 +16,20 @@ class GitHubTest < Minitest::Test
     assert_includes query, 'p1: repository(owner: "other", name: "second")'
   end
 end
+
+class PartialHistoryTest < Minitest::Test
+  def test_missing_repository_keeps_other_results_in_the_batch
+    response = { 'data' => { 'p0' => nil, 'p1' => { 'isPrivate' => false } },
+                 'errors' => [{ 'type' => 'NOT_FOUND' }] }
+    result = GemfileCorpus::GitHub.new.send(:history_response, JSON.generate(response), 'missing repository', false)
+    assert_nil result['p0']
+    assert_equal false, result['p1']['isPrivate']
+  end
+
+  def test_other_api_errors_are_not_suppressed
+    response = { 'data' => {}, 'errors' => [{ 'type' => 'RATE_LIMITED' }] }
+    assert_raises(RuntimeError) do
+      GemfileCorpus::GitHub.new.send(:history_response, JSON.generate(response), 'rate limited', false)
+    end
+  end
+end

@@ -1,6 +1,6 @@
 module GemfileCorpus
   REPOSITORY = /\A[A-Za-z0-9_-][A-Za-z0-9_.-]*\/[A-Za-z0-9_-][A-Za-z0-9_.-]*\z/
-  SAMPLE = %r{\Agemfiles/(\d{4})/([A-Za-z0-9_-][A-Za-z0-9_.-]*/[A-Za-z0-9_-][A-Za-z0-9_.-]*)/(Gemfile|gems\.rb)\z}
+  SAMPLE = %r{\A(?:gemfiles|lockfiles)/(\d{4})/([A-Za-z0-9_-][A-Za-z0-9_.-]*/[A-Za-z0-9_-][A-Za-z0-9_.-]*)/(Gemfile|gems\.rb|Gemfile\.lock|gems\.locked)\z}
 end
 
 require 'ripper'
@@ -38,7 +38,13 @@ module GemfileCorpus
   class Store
     COLUMNS = %w[repository path commit sha256].freeze
 
-    def initialize(root)
+    attr_reader :kind
+
+    def initialize(root, kind:)
+      raise 'Invalid corpus kind' unless %i[gemfiles lockfiles].include?(kind)
+
+      @kind = kind
+      @filenames = kind == :gemfiles ? %w[Gemfile gems.rb] : %w[Gemfile.lock gems.locked]
       @root = File.expand_path(root)
     end
 
@@ -65,10 +71,12 @@ module GemfileCorpus
     end
 
     def rows
-      records.reject { |row| row.fetch('path').to_s.empty? }
+      records.select { |row| row.fetch('path').to_s.start_with?("#{@kind}/") }
     end
 
     def save(entries)
+      other = records.reject { |row| row.fetch('path').to_s.empty? || row.fetch('path').start_with?("#{@kind}/") }
+      entries = entries + other
       pending = repositories - entries.map { |row| row.fetch('repository') }
       entries = entries + pending.map { |repository| COLUMNS.to_h { |key| [key, key == 'repository' ? repository : ''] } }
       text = CSV.generate(col_sep: "\t") do |csv|
@@ -85,17 +93,18 @@ module GemfileCorpus
     def add(repository, year, filename, commit, data)
       raise 'Invalid repository' unless REPOSITORY.match?(repository)
       raise 'Invalid year' unless (1900..9999).cover?(year)
-      raise 'Invalid filename' unless %w[Gemfile gems.rb].include?(filename)
+      raise 'Invalid filename' unless @filenames.include?(filename)
       raise 'Invalid commit' unless /\A[0-9a-f]{40}\z/.match?(commit)
 
-      raise 'Gemfile depends on a gemspec' if Declarations.uses_gemspec?(data)
+      raise 'Gemfile depends on a gemspec' if @kind == :gemfiles && Declarations.uses_gemspec?(data)
 
       entries = rows
       checksum = Digest::SHA256.hexdigest(data)
       duplicate = entries.find do |row|
-        SAMPLE.match(row.fetch('path'))[2] == repository && row.fetch('sha256') == checksum
+        SAMPLE.match(row.fetch('path'))[2] == repository && row.fetch('sha256') == checksum &&
+          (@kind == :gemfiles || File.basename(row.fetch('path')) == filename)
       end
-      path = "gemfiles/#{year}/#{repository}/#{filename}"
+      path = "#{@kind}/#{year}/#{repository}/#{filename}"
       destination = File.join(@root, path)
       if duplicate
         return :unchanged if duplicate.fetch('path').split('/')[1].to_i <= year
@@ -117,7 +126,7 @@ module GemfileCorpus
     def verify(duplicates: true)
       entries = rows
       paths = entries.map { |row| row.fetch('path') }
-      actual = Dir.glob(File.join(@root, 'gemfiles', '**', '*'), File::FNM_DOTMATCH)
+      actual = Dir.glob(File.join(@root, @kind.to_s, '**', '*'), File::FNM_DOTMATCH)
                   .select { |path| File.file?(path) || File.symlink?(path) }
                   .map { |path| path.delete_prefix(@root + '/') }
       raise 'Files do not match provenance' unless paths.uniq == paths && paths.sort == actual.sort
@@ -126,15 +135,15 @@ module GemfileCorpus
       projects = repositories
       entries.each do |row|
         match = SAMPLE.match(row.fetch('path'))
-        raise "Invalid sample: #{row['path']}" unless match && match[2] == row.fetch('repository') && projects.include?(match[2])
+        raise "Invalid sample: #{row['path']}" unless match && @filenames.include?(match[3]) && match[2] == row.fetch('repository') && projects.include?(match[2])
         raise 'Invalid commit' unless /\A[0-9a-f]{40}\z/.match?(row.fetch('commit'))
         file = File.join(@root, row.fetch('path'))
         raise "Symlink sample: #{file}" if File.symlink?(file)
         checksum = Digest::SHA256.file(file).hexdigest
         raise "Checksum differs: #{file}" unless checksum == row.fetch('sha256')
-        raise "Gemfile depends on a gemspec: #{file}" if Declarations.uses_gemspec?(File.binread(file))
+        raise "Gemfile depends on a gemspec: #{file}" if @kind == :gemfiles && Declarations.uses_gemspec?(File.binread(file))
 
-        key = [match[2], checksum]
+        key = [match[2], checksum, @kind == :lockfiles ? match[3] : nil]
         raise "Duplicate sample: #{row['path']}" if duplicates && known[key]
         known[key] = true
       end
@@ -144,7 +153,7 @@ module GemfileCorpus
     def deduplicate
       verify(duplicates: false)
       entries = rows
-      retained = entries.group_by { |row| [SAMPLE.match(row.fetch('path'))[2], row.fetch('sha256')] }
+      retained = entries.group_by { |row| [SAMPLE.match(row.fetch('path'))[2], row.fetch('sha256'), @kind == :lockfiles ? File.basename(row.fetch('path')) : nil] }
                         .values.map { |group| group.min_by { |row| row.fetch('path') } }
       (entries - retained).each { |row| File.delete(File.join(@root, row.fetch('path'))) }
       save(retained)
@@ -168,12 +177,7 @@ module GemfileCorpus
         'gh', 'api', 'graphql', '--input', '-',
         stdin_data: JSON.generate(query: query)
       )
-      raise "GitHub API failed: #{error}" unless status.success?
-
-      response = JSON.parse(output)
-      raise "GitHub query failed: #{response['errors']}" if response['errors']
-
-      response.fetch('data')
+      history_response(output, error, status.success?)
     end
 
     def gemfile(repository, commit)
@@ -185,7 +189,24 @@ module GemfileCorpus
       nil
     end
 
+    def lockfiles(repository, commit)
+      %w[Gemfile.lock gems.locked].filter_map do |filename|
+        content = download(URI("https://raw.githubusercontent.com/#{repository}/#{commit}/#{filename}"))
+        [filename, content] if content
+      end
+    end
+
     private
+
+    def history_response(output, error, success)
+      response = JSON.parse(output.empty? ? '{}' : output)
+      errors = response.fetch('errors', [])
+      missing_only = !errors.empty? && errors.all? { |entry| entry['type'] == 'NOT_FOUND' }
+      raise "GitHub API failed: #{error}" unless success || (missing_only && response['data'])
+      raise "GitHub query failed: #{errors}" unless errors.empty? || missing_only
+
+      response.fetch('data')
+    end
 
     def history_query(repositories, years, now)
       fields = years.map do |year|
@@ -225,7 +246,7 @@ module GemfileCorpus
           content = String.new(encoding: Encoding::BINARY)
           response.read_body do |chunk|
             content << chunk
-            raise 'Gemfile exceeds 2 MiB' if content.bytesize > MAX_BYTES
+            raise 'Downloaded file exceeds 2 MiB' if content.bytesize > MAX_BYTES
           end
         end
       end
@@ -242,6 +263,7 @@ module GemfileCorpus
       @store = store
       @github = github
       @output = output
+      @store_lock = Mutex.new
     end
 
     def collect(years, repositories: @store.repositories)
@@ -251,8 +273,27 @@ module GemfileCorpus
       years = years.sort.uniq
       repositories.each_slice(20).sum do |batch|
         projects = @github.histories(batch, years)
-        batch.each_with_index.sum do |repository, index|
-          collect_project(repository, projects.fetch("p#{index}"), years)
+        if @store.kind == :lockfiles
+          queue = Queue.new
+          batch.each_with_index { |repository, index| queue << [repository, projects.fetch("p#{index}")] }
+          4.times.map do
+            Thread.new do
+              failures = 0
+              loop do
+                item = begin
+                  queue.pop(true)
+                rescue ThreadError
+                  break
+                end
+                failures += collect_project(*item, years)
+              end
+              failures
+            end
+          end.sum(&:value)
+        else
+          batch.each_with_index.sum do |repository, index|
+            collect_project(repository, projects.fetch("p#{index}"), years)
+          end
         end
       end
     end
@@ -274,7 +315,7 @@ module GemfileCorpus
           sample = download_year(repository, year, commits, downloads)
           next unless sample
 
-          if Declarations.uses_gemspec?(sample.last)
+          if @store.kind == :gemfiles && Declarations.uses_gemspec?(sample.first.last)
             @output.puts "#{repository}: excluded (depends on a gemspec)"
             return failures
           end
@@ -286,7 +327,7 @@ module GemfileCorpus
       end
 
       failures + samples.sum do |year, sample|
-        store_year(repository, year, sample)
+        sample.sum { |entry| store_year(repository, year, entry) }
       end
     end
 
@@ -298,38 +339,32 @@ module GemfileCorpus
       end
 
       sha = commit.fetch('oid')
-      downloads[sha] = @github.gemfile(repository, sha) unless downloads.key?(sha)
+      unless downloads.key?(sha)
+        downloads[sha] = if @store.kind == :lockfiles
+                          @github.lockfiles(repository, sha)
+                        else
+                          sample = @github.gemfile(repository, sha)
+                          sample ? [sample] : []
+                        end
+      end
       sample = downloads[sha]
-      unless sample
-        @output.puts "#{repository} #{year}: no Gemfile"
+      if sample.empty?
+        label = @store.kind == :lockfiles ? "lockfile" : "Gemfile"
+        @output.puts "#{repository} #{year}: no #{label}"
         return
       end
 
-      [sha, *sample]
+      sample.map { |entry| [sha, *entry] }
     end
 
     def store_year(repository, year, sample)
       sha, filename, content = sample
-      result = @store.add(repository, year, filename, sha, content)
+      result = @store_lock.synchronize { @store.add(repository, year, filename, sha, content) }
       @output.puts "#{repository} #{year}: #{result}"
       0
     rescue StandardError => error
       @output.puts "#{repository} #{year}: error: #{error.message}"
       1
     end
-  end
-end
-
-if $PROGRAM_NAME == __FILE__
-  root = File.expand_path('..', __dir__)
-  store = GemfileCorpus::Store.new(root)
-  begin
-    failures = GemfileCorpus::Collector.new(store).collect((2021..Time.now.year).to_a)
-    puts "Removed #{store.deduplicate} duplicates"
-    puts "Verified #{store.verify} Gemfiles"
-    exit 1 unless failures.zero?
-  rescue StandardError => error
-    warn error.message
-    exit 1
   end
 end

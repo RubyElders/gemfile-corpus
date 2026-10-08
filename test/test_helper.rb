@@ -7,7 +7,7 @@ class CorpusTestCase < Minitest::Test
   def setup
     @root = Dir.mktmpdir
     File.write(File.join(@root, 'sources.tsv'), "repository\tpath\tcommit\tsha256\nowner/project\t\t\t\nother/project\t\t\t\n")
-    @store = GemfileCorpus::Store.new(@root)
+    @store = GemfileCorpus::Store.new(@root, kind: :gemfiles)
   end
 
   def teardown
